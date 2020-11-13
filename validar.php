@@ -7,7 +7,7 @@ $consulta="select * from usuario where nombre_usu='$usuario' and password='$clav
 $resultado=mysqli_query($conexion,$consulta);
 $filas=mysqli_fetch_row($resultado);
 if($filas>0){
-    header("Location:deashboard/index.html?id=$filas[0]");
+    header("Location:panel_control.html?id=$filas[0]");
 }
 else{
     echo "Error de autenticacion";
