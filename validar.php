@@ -6,6 +6,7 @@ $conexion=mysqli_connect("localhost","root","","almacen_informatico");
 $consulta="select * from usuario where nombre_usu='$usuario' and password='$clave'";
 $resultado=mysqli_query($conexion,$consulta);
 $filas=mysqli_fetch_row($resultado);
+//prueba de comentario
 if($filas>0){
     header("Location:panel_control.html?id=$filas[0]");
 }
