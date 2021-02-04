@@ -19,7 +19,7 @@ include "conexion.php";
                                 <th>Modelo</th>
                                 <th>Proveedor</th>
                                 <th style="width: 40px">Stock</th>
-                                <th></th>
+                                <td><button onclick="nuevoProducto();" type="button" class="btn btn-primary">Nuevo</button></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,9 +40,9 @@ include "conexion.php";
                                 <td><?php echo " $f[5] ";?></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button onclick="#(<?php echo $f[0]; ?>);" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button>
-                                        <button onclick="#(<?php echo $f[0]; ?>);" class="btn btn-secondary btn-circle"><i class="fas fa-edit"></i></button>
-                                        <button onclick="#(<?php echo $f[0]; ?>);" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></button>
+                                        <button onclick="VerProducto(<?php echo $f[0]; ?>);" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button>
+                                        <button onclick="MEditProducto(<?php echo $f[0]; ?>);" class="btn btn-secondary btn-circle"><i class="fas fa-edit"></i></button>
+                                        <button onclick="MEliProducto(<?php echo $f[0]; ?>);" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>

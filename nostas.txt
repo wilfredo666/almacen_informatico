@@ -1,0 +1,5 @@
+-problema, no carga los navegadores porque
+panel_control.html no carga footer que es donde se encuentran los js
+solucion:
+-renombrar panel_control.html a aside.html
+crear una pagina php que muestre el perfil de usuario y en ella incluir aside.html y footer.html
