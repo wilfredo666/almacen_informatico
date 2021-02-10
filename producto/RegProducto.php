@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "../conexion.php";
 
 $desc_prod=$_POST["desc_prod"];
 $marca=$_POST["marca"];

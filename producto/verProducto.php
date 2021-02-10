@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "../conexion.php";
 $id=$_GET["id"];
 $res=mysqli_query($conectador,"SELECT * FROM producto WHERE id_producto=$id");
 $f=mysqli_fetch_array($res);

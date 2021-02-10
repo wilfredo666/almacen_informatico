@@ -5,7 +5,7 @@ function nuevoProducto(){
     $.ajax(
         {
             type:"POST",
-            url:"http://localhost/almacen_informatico/nuevoProducto.php",
+            url:"http://localhost/almacen_informatico/producto/nuevoProducto.php",
             data:obj,
             success:function(data){
                 $("#formulario").html(data);
@@ -18,7 +18,7 @@ function RegProducto(){
     var formData = new FormData($("#form_producto")[0]);
 
     $.ajax({
-        url:"http://localhost/almacen_informatico/RegProducto.php",
+        url:"http://localhost/almacen_informatico/producto/RegProducto.php",
         type:"POST",
         data:formData,
         cache:false,
@@ -43,6 +43,7 @@ function RegProducto(){
           )
 
 }
+
 /*modal eliminar producto*/
 function MEliProducto(id){
     $('#modal_cont_sm').modal('show');
@@ -50,7 +51,7 @@ function MEliProducto(id){
     $.ajax(
         {
             type:"POST",
-            url:"http://localhost/almacen_informatico/F_EliProducto.php?id="+id,
+            url:"http://localhost/almacen_informatico/producto/F_EliProducto.php?id="+id,
             data:obj,
             success:function(data){
                 $("#formulario_sm").html(data);
@@ -61,9 +62,9 @@ function MEliProducto(id){
 
 /*eliminar producto*/
 function EliProducto(id){
-        var obj="";
+    var obj="";
     $.ajax({type:"POST",
-            url:"http://localhost/almacen_informatico/EliProducto.php?id="+id,
+            url:"http://localhost/almacen_informatico/producto/EliProducto.php?id="+id,
             data:obj,
             success:function(data)
             {
@@ -91,7 +92,7 @@ function VerProducto(id){
     $.ajax(
         {
             type:"POST",
-            url:"http://localhost/almacen_informatico/verProducto.php?id="+id,
+            url:"http://localhost/almacen_informatico/producto/verProducto.php?id="+id,
             data:obj,
             success:function(data){
                 $("#formulario_sm").html(data);
@@ -107,7 +108,7 @@ function MEditProducto(id){
     $.ajax(
         {
             type:"POST",
-            url:"http://localhost/almacen_informatico/FormEditProducto.php?id="+id,
+            url:"http://localhost/almacen_informatico/producto/FormEditProducto.php?id="+id,
             data:obj,
             success:function(data){
                 $("#formulario").html(data);
@@ -116,11 +117,12 @@ function MEditProducto(id){
     )
 }
 
+/*editar producto - funcion*/
 function EditProducto(id){
-     var formData = new FormData($("#form_edit_producto")[0]);
+    var formData = new FormData($("#form_edit_producto")[0]);
 
     $.ajax({
-        url:"http://localhost/almacen_informatico/ActProducto.php?id="+id,
+        url:"http://localhost/almacen_informatico/producto/ActProducto.php?id="+id,
         type:"POST",
         data:formData,
         cache:false,
@@ -129,7 +131,7 @@ function EditProducto(id){
         success:function(data)
         {
             $("#mensaje_cont").html("<center class='alert alert-success' style='width:350px;'>Producto actualizado con exito!!!</center>");
-            
+
 
             setTimeout(
                 function(){
@@ -145,18 +147,55 @@ function EditProducto(id){
     }
           )
 }
-function prueba(){
-    alert("esto es una prueba de script desde usuario");
-    //console.log("esto es una prueba de script");
-}
-function usu(){
+
+/*informacion del producto seleccionado en "IngresoProducto"*/
+function infoProducto(){
+    var id_producto=document.getElementById('producto').value;
     var obj="";
-    $.ajax({type:"POST",
-            url:"http://localhost/almacen_informatico/usuarios.php",
+    $.ajax(
+        {
+            type:"POST",
+            url:"http://localhost/almacen_informatico/producto/IngInfoProducto.php?id="+id_producto,
             data:obj,
             success:function(data){
-                $("#content-wrapper").html(data);
+                $("#info_producto").html(data);
             }
-           }
+        }
+    )
+}
+
+/*registrar ingreso - funcion*/
+function RegIngreso(){
+    var formData = new FormData($("#form_ingreso_producto")[0]);
+
+    $.ajax({
+        url:"http://localhost/almacen_informatico/producto/RegIngreso.php",
+        type:"POST",
+        data:formData,
+        cache:false,
+        contentType:false,
+        processData:false,
+        success:function(data)
+        {
+            $("#mensaje_cont").html("<center class='alert alert-success' style='width:350px;'>Producto ingresado con exito!!!</center>");
+
+
+            setTimeout(
+                function(){
+                    location.reload();
+                },1000);
+            document.getElementById('costo_pro').value="";
+            document.getElementById('costo_tot_pro').value="";
+            document.getElementById('cantidad_pro').value="";
+        }
+
+    }
           )
+}
+function CostoTotal(){
+    var cantidad=document.getElementById('cantidad_pro').value;
+    var costoUnitario=document.getElementById('costo_pro').value;
+    var total=parseFloat(cantidad)*parseFloat(costoUnitario);
+    document.getElementById('costo_tot_pro').value=total.toFixed(2);
+
 }

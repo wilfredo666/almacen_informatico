@@ -106,3 +106,44 @@ function EditProveedor(id){
     }
           )
 }
+
+/*modal eliminar proveedor*/
+function MEliProveedor(id){
+    $('#modal_cont_sm').modal('show');
+    var obj="";
+    $.ajax(
+        {
+            type:"POST",
+            url:"http://localhost/almacen_informatico/proveedor/FormEliProveedor.php?id="+id,
+            data:obj,
+            success:function(data){
+                $("#formulario_sm").html(data);
+            }
+        }
+    )
+}
+
+/*eliminar proveedor - funcion*/
+function EliProveedor(id){
+        var obj="";
+    $.ajax({type:"POST",
+            url:"http://localhost/almacen_informatico/proveedor/EliProveedor.php?id="+id,
+            data:obj,
+            success:function(data)
+            {
+                $("#mensaje_cont_sm").html("<center class='alert alert-success' style='width:350px;'>El proveedor ha sido eliminado!!!</center>");
+
+                setTimeout(
+                    function(){
+                        $('#modal_cont_sm').modal('hide');
+                    },1000);
+
+                setTimeout(
+                    function(){
+                        location.reload();
+                    },1000);
+            }
+
+           }
+          )
+}
