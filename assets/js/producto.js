@@ -148,6 +148,22 @@ function EditProducto(id){
           )
 }
 
+/*buscar producto*/
+function BuscarProducto(){
+        var txt_bus=$("#dat_producto").val();
+    var obj={
+        txt_bus:txt_bus  
+    };
+    $.ajax({
+        url:"http://localhost/almacen_informatico/producto/lista_buscar_producto.php",
+        type:"POST",
+        data:obj,
+        success:function(data){
+            $("#res_bus_producto").html(data);
+        }
+    })
+}
+
 /*informacion del producto seleccionado en "IngresoProducto"*/
 function infoProducto(){
     var id_producto=document.getElementById('producto').value;
@@ -192,6 +208,8 @@ function RegIngreso(){
     }
           )
 }
+
+/*calcular el total de stock*/
 function CostoTotal(){
     var cantidad=document.getElementById('cantidad_pro').value;
     var costoUnitario=document.getElementById('costo_pro').value;
@@ -199,3 +217,5 @@ function CostoTotal(){
     document.getElementById('costo_tot_pro').value=total.toFixed(2);
 
 }
+
+

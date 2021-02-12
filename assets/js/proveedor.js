@@ -147,3 +147,19 @@ function EliProveedor(id){
            }
           )
 }
+
+/*buscar proveedor*/
+function BuscarProveedor(){
+        var txt_bus=$("#dat_proveedor").val();
+    var obj={
+        txt_bus:txt_bus  
+    };
+    $.ajax({
+        url:"http://localhost/almacen_informatico/proveedor/lista_buscar_proveedor.php",
+        type:"POST",
+        data:obj,
+        success:function(data){
+            $("#res_bus_proveedor").html(data);
+        }
+    })
+}

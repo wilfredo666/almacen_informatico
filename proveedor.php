@@ -10,6 +10,22 @@ include "conexion.php";
         <div class="container-fluid">
             <div class="row">
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <h4>Buscar proveedor</h4>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-info btn-circle" disabled><i class="fas fa-search"></i></button>
+                                </div>
+                                <input type="text" name="dat_proveedor" id="dat_proveedor"  class="form-control" placeholder="Escriba el proveedor que desee buscar" onkeyup="BuscarProveedor();">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                    <br>
                     <table class="table table-bordered">
                         <thead>                  
                             <tr>
@@ -21,7 +37,7 @@ include "conexion.php";
                                 <td><button onclick="nuevoProveedor();" type="button" class="btn btn-primary">Nuevo</button></td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="res_bus_proveedor">
 
                             <?php
                             $res=mysqli_query($conectador,"SELECT id_proveedor,nombre_prov,nit,telefono,direccion FROM proveedor;");

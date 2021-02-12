@@ -10,6 +10,23 @@ include "conexion.php";
         <div class="container-fluid">
             <div class="row">
                 <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-4">
+                            <h4>Buscar producto</h4>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-info btn-circle" disabled><i class="fas fa-search"></i></button>
+                                </div>
+                                <input type="text" name="dat_producto" id="dat_producto"  class="form-control" placeholder="Escriba el producto que desee buscar" onkeyup="BuscarProducto();">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                    <br>
                     <table class="table table-bordered">
                         <thead>                  
                             <tr>
@@ -22,7 +39,7 @@ include "conexion.php";
                                 <td><button onclick="nuevoProducto();" type="button" class="btn btn-primary">Nuevo</button></td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="res_bus_producto" class="res_bus_producto">
 
                             <?php
                             $res=mysqli_query($conectador,"SELECT `id_producto`,`descripcion`,`marca`,`modelo`,`nombre_prov`,`stock` FROM `producto`
@@ -51,11 +68,22 @@ include "conexion.php";
                             ?>
                         </tbody>
                     </table>
+                    <!--paginacion-->
+                    <div class="row">
+                        <?php
+                        echo "aqui";
+                        include "paginacion.php";
+                        $pag=new producto(3);
+                        ?>
+                    </div>
+                    <!--final paginacion-->
                 </div>
             </div>
         </div>
     </section>
     <!-- final contenido principal -->
+
+
 </div>
 <?php
 include "footer.html";
