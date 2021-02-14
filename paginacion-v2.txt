@@ -1,3 +1,6 @@
+***video tutorial: https://www.youtube.com/watch?v=7zqhhHNvSw0
+
+
 <?php
 include "conexion.php";
 
@@ -58,3 +61,12 @@ class producto{
     }
 }
 ?>
+
+------------
+                    <div class="row">
+                        <?php
+                        echo "aqui";
+                        include "paginacion.php";
+                        $pag=new producto(3);
+                        ?>
+                    </div>

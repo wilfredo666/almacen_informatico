@@ -2,6 +2,7 @@
 <?php
 include "panel_control.html";
 include "conexion.php";
+
 ?>
 <div class="content-wrapper">
 
@@ -42,9 +43,11 @@ include "conexion.php";
                         <tbody id="res_bus_producto" class="res_bus_producto">
 
                             <?php
+                            //obtener por get el inicio y multiplicarlo por la cantidad de registros que queremos que se vea
+                            $inicio=($_GET["pagina"]-1)*10;
                             $res=mysqli_query($conectador,"SELECT `id_producto`,`descripcion`,`marca`,`modelo`,`nombre_prov`,`stock` FROM `producto`
                                 JOIN proveedor
-                                ON proveedor.id_proveedor=producto.id_proveedor;");
+                                ON proveedor.id_proveedor=producto.id_proveedor ORDER BY id_producto limit $inicio,10;");
                             while($f=mysqli_fetch_array($res))
                             {
                             ?>
@@ -69,13 +72,41 @@ include "conexion.php";
                         </tbody>
                     </table>
                     <!--paginacion-->
-                    <div class="row">
-                        <?php
-                        echo "aqui";
-                        include "paginacion.php";
-                        $pag=new producto(3);
-                        ?>
-                    </div>
+                    <?php
+                    //obtener el total de filas
+                    $sql=mysqli_query($conectador,"select count(*) as total from producto");
+                    $totalRegistros=mysqli_fetch_array($sql);
+
+                    $productosPorPagina=10;
+                    $total=ceil($totalRegistros[0]/$productosPorPagina);
+                    //var_dump($resultado);
+
+
+                    ?>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item <?php echo $_GET["pagina"]<=1 ? "disabled" : " "?>">
+                                <a class="page-link" href="producto.php?pagina=<?php echo $_GET['pagina']-1;?>" aria-label="Anterior">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <?php for($i=0; $i<$total; $i++)
+{
+                            ?>
+                            <li class="page-item <?php echo $_GET['pagina']==$i+1 ? "active": ""?>"><a class="page-link" href="producto.php?pagina=<?php echo $i+1;?>">
+                            <?php echo $i+1;?>
+                            </a>
+                            </li>
+                            <?php
+}
+                            ?>
+                            <li class="page-item <?php echo $_GET["pagina"]>=$total ? "disabled" : " "?>">
+                                <a class="page-link" href="producto.php?pagina=<?php echo $_GET['pagina']+1;?>" aria-label="Siguiente">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                     <!--final paginacion-->
                 </div>
             </div>
