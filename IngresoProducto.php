@@ -20,6 +20,7 @@ include "conexion.php";
                                 $resul=mysqli_query($conectador,"select * from producto");
                                 ?>
                                 <select name="producto" id="producto" class="form-control" onchange="infoProducto();">
+                                   <option>Seleccionar producto</option>
                                     <?php
 
                                     while($f=mysqli_fetch_array($resul))

@@ -4,7 +4,7 @@ $id=$_GET["id"];
 $res=mysqli_query($conectador,"SELECT * FROM proveedor WHERE id_proveedor=$id");
 $f=mysqli_fetch_array($res);
 ?>
-<table>
+<table class="table">
     <tr>
         <th style="width: 150px">Id de proveedor:</th>
         <td><?php echo $f[0];?></td>

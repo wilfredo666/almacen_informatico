@@ -1,10 +1,10 @@
 <?php
 include "../conexion.php";
 $id=$_GET["id"];
-$res=mysqli_query($conectador,"SELECT * FROM producto WHERE id_producto=$id");
+$res=mysqli_query($conectador,"SELECT * FROM producto, proveedor WHERE producto.id_proveedor=proveedor.id_proveedor and id_producto=$id");
 $f=mysqli_fetch_array($res);
 ?>
-<table>
+<table class="table">
     <tr>
         <th>Id de producto:</th>
         <td><?php echo $f[0];?></td>
@@ -23,7 +23,7 @@ $f=mysqli_fetch_array($res);
     </tr>
     <tr>
         <th>Proveedor:</th>
-        <td><?php echo $f[4];?></td>
+        <td><?php echo $f[7];?></td>
     </tr>
     <tr>
         <th>Stock en almacen:</th>

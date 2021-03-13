@@ -9,7 +9,7 @@
             <br>
             <select name="proveedor" id="proveedor" class="form-control">
                 <?php
-                include "conexion.php";
+                include "../conexion.php";
                 $resul=mysqli_query($conectador,"select * from proveedor");
                 while($f=mysqli_fetch_array($resul))
                 {

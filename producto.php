@@ -71,6 +71,7 @@ include "conexion.php";
                             ?>
                         </tbody>
                     </table>
+                    <br>
                     <!--paginacion-->
                     <?php
                     //obtener el total de filas
